@@ -1,799 +1,275 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>Служба безпеки України</title>
-  <meta name="viewport" content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <style>
-    :root {
-      --main-bg: #0e0f12;
-      --main-dark: #191a17;
-      --main-black: #161716;
-      --main-accent: #ff9900;
-      --main-accent-hover: #ffbf55;
-      --card-dark: #10130f;
-      --card-lighter: #101214;
-      --main-text: #fff;
-      --gray-text: #878787;
-      --border-radius: 10px;
-    }
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--main-bg);
-      color: var(--main-text);
-      font-family: 'Arial', 'Verdana', sans-serif;
-      min-height: 100vh;
-      box-sizing: border-box;
-      font-size: 18px;
-    }
-    body {
-      padding-bottom: 32px;
-    }
-    .topbar {
-      background: var(--main-black);
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 30;
-      box-sizing: border-box;
-    }
-    .logo-block {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 6px;
-      background: var(--main-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: var(--main-black);
-      font-size: 28px;
-    }
-    .logo-title {
-      font-weight: bold;
-      font-size: 1.2em;
-      letter-spacing: 2px;
-      color: var(--main-accent);
-    }
-    .topbar-actions {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .accent-btn {
-      background: none;
-      border: 2px solid var(--main-accent);
-      color: var(--main-accent);
-      font-weight: bold;
-      border-radius: 6px;
-      padding: 7px 24px;
-      margin-left: 8px;
-      transition: background 0.16s, color 0.16s;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .accent-btn:hover {
-      background: var(--main-accent);
-      color: var(--main-black);
-    }
-    .langbtn {
-      color: #fff;
-      background: #23231b;
-      border: none;
-      border-radius: 5px;
-      padding: 7px 15px;
-      margin-right: 8px;
-      font-size: 15px;
-      cursor: pointer;
-    }
-    .menu-btn {
-      font-size: 18px;
-      padding: 7px 15px;
-      border: none;
-      background: transparent;
-      color: #fff;
-      white-space: nowrap;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .container {
-      max-width: 540px;
-      margin: 0 auto;
-      padding: 24px 10px 0 10px;
-    }
-    .main-cloud {
-      text-align: center;
-      padding: 28px 0 8px 0;
-      margin-bottom: 10px;
-      font-size: 17px;
-      line-height: 1.2;
-    }
-    .main-cloud span {
-      display: block;
-      font-size: 32px;
-      color: var(--main-accent);
-      font-weight: bold;
-      margin-bottom: 0px;
-      line-height: 1;
-      letter-spacing: 1px;
-    }
-    .main-cloud .cloud-words {
-      font-size: 13px;
-      color: #afafaf;
-      margin-bottom: 6px;
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px 10px;
-      font-weight: 500;
-      line-height: 1;
-    }
-    .apply-btn-main {
-      display: block;
-      margin: 24px auto 18px auto;
-      background: var(--main-accent);
-      color: var(--main-black);
-      font-size: 17px;
-      font-weight: bold;
-      border: none;
-      border-radius: 7px;
-      padding: 18px 20px;
-      min-width: 210px;
-      cursor: pointer;
-      box-shadow: 0 2px 16px rgba(120,70,0,0.13);
-      letter-spacing: 1px;
-      transition: background 0.17s;
-    }
-    .apply-btn-main:hover {
-      background: var(--main-accent-hover);
-    }
-    /* ПРО СБУ card */
-    .about-card {
-      background: rgba(45,44,36,0.74);
-      border-radius: var(--border-radius);
-      margin-bottom: 28px;
-      padding: 18px 18px 12px 18px;
-      box-shadow: 0 6px 36px rgba(0,0,0,0.16);
-      position: relative;
-      overflow: hidden;
-    }
-    .about-card h2 {
-      font-size: 1.16em;
-      color: var(--main-accent);
-      font-weight: bold;
-      margin-bottom: 14px;
-      margin-top: 0;
-      letter-spacing: 1px;
-    }
-    .about-card p {
-      margin: 0 0 14px 0;
-      font-size: 1em;
-      color: #e7e3dc;
-    }
-    .about-card .detail-btn {
-      width: 100%;
-      margin-top: 4px;
-      background: var(--main-accent);
-      color: var(--main-black);
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      padding: 13px;
-      font-size: 17px;
-      cursor: pointer;
-      transition: background 0.14s;
-    }
-    .about-card .detail-btn:hover {
-      background: var(--main-accent-hover);
-      color: #1a1a1a;
-    }
-    .video-card {
-      width: 100%;
-      margin: 18px 0 26px 0;
-      background: #171a13;
-      border-radius: 9px;
-      min-height: 170px;
-      position: relative;
-      box-shadow: 0 2px 12px rgba(20,22,7,0.12);
-      overflow: hidden;
-    }
-    .video-card img {
-      width: 100%;
-      min-height: 170px;
-      object-fit: cover;
-      display: block;
-    }
-    .video-card .video-logo {
-      position: absolute;
-      left: 18px;
-      top: 18px;
-      height: 40px;
-      background: rgba(24,24,9,0.6);
-      border-radius: 5px;
-      padding: 5px 13px;
-      font-size: 18px;
-      color: var(--main-accent);
-      font-weight: bold;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-    }
-    .video-card .video-play {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-      font-size: 44px;
-      color: var(--main-accent);
-      background: rgba(20, 20, 20, 0.33);
-      border-radius: 55%;
-      padding: 9px 17px 14px 16px;
-      cursor: pointer;
-      border: 2px solid var(--main-accent);
-      transition: filter 0.18s;
-    }
-    .video-card .video-title {
-      position: absolute;
-      left: 14px; bottom: 15px;
-      font-size: 27px;
-      font-weight: bold;
-      color: var(--main-accent);
-      letter-spacing: 1px;
-      text-shadow: 0 2px 10px #19150080;
-    }
-    .choose-title {
-      color: var(--main-accent);
-      margin: 30px 0 14px 0;
-      font-size: 1.18em;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .choose-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 22px;
-    }
-    .choose-card {
-      flex: 1 1 164px;
-      background: var(--main-accent);
-      color: #212121;
-      border-radius: 10px;
-      min-width: 164px;
-      padding: 18px 14px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      position: relative;
-      min-height: 120px;
-    }
-    .choose-card strong {
-      font-size: 1.12em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .choose-card .choose-desc {
-      font-size: 0.98em;
-      margin-bottom: 14px;
-    }
-    .choose-card .choose-btn {
-      margin-top: auto;
-      border: 2px solid var(--main-black);
-      background: transparent;
-      color: var(--main-black);
-      font-weight: bold;
-      padding: 11px 20px;
-      border-radius: 6px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: background 0.16s, color 0.16s;
-    }
-    .choose-card .choose-btn:hover {
-      background: var(--main-black);
-      color: var(--main-accent);
-    }
-    /* Find yourself section */
-    .find-title {
-      color: var(--main-accent);
-      margin: 36px 0 14px 0;
-      font-size: 1.12em;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .find-desc {
-      margin-bottom: 11px;
-      color: #dbd7cf;
-      font-size: 1em;
-      letter-spacing: 0.2px;
-    }
-    .find-list {
-      margin: 0 0 12px 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-    }
-    .find-list .find-card {
-      background: #161c12;
-      border-radius: var(--border-radius);
-      box-shadow: 0 1px 18px #21261323;
-      padding: 15px 18px;
-      color: #fbfbf7;
-      margin-bottom: 1px;
-      font-size: 1.01em;
-      display: flex;
-      flex-direction: column;
-    }
-    .find-card .find-label {
-      font-weight: bold;
-      margin-bottom: 7px;
-      color: var(--main-accent);
-      font-size: 0.96em;
-    }
-    .find-card .find-btn {
-      align-self: flex-end;
-      margin-top: 7px;
-      border: 2px solid var(--main-accent);
-      background: transparent;
-      color: var(--main-accent);
-      font-weight: bold;
-      border-radius: 5px;
-      padding: 8px 20px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.16s, color 0.16s;
-    }
-    .find-card .find-btn:hover {
-      background: var(--main-accent);
-      color: var(--main-black);
-    }
-    /* Subdivisions grid */
-    .division-title {
-      color: var(--main-accent);
-      margin: 46px 0 15px 0;
-      font-size: 1.14em;
-      font-weight: bold;
-      letter-spacing: 1.1px;
-    }
-    .division-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-    .division-card {
-      background: #191f15;
-      border-radius: 12px;
-      padding: 18px;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      min-height: 120px;
-      box-sizing: border-box;
-      box-shadow: 0 2px 17px rgba(0,0,0,0.13);
-    }
-    .division-card .division-ico {
-      width: 38px;
-      height: 38px;
-      margin-bottom: 11px;
-    }
-    .division-card span {
-      font-size: 16px;
-      font-weight: bold;
-    }
-    /* FAQ section */
-    .faq-title {
-      color: var(--main-accent);
-      margin: 45px 0 12px 0;
-      font-size: 1.16em;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .faq-list {
-      padding: 0;
-      margin: 0 0 12px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-    .faq-btn {
-      background: #11130f;
-      border: none;
-      color: #fff;
-      border-radius: 8px;
-      padding: 12px 18px;
-      text-align: left;
-      font-size: 1.01em;
-      position: relative;
-      font-weight: bold;
-      transition: background 0.13s;
-      cursor: pointer;
-      margin-bottom: 1px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .faq-btn .faq-plus {
-      font-size: 1.4em;
-      color: var(--main-accent);
-      font-weight: bold;
-      margin-left: 7px;
-    }
-    .faq-linkbtn {
-      margin-bottom: 16px;
-      margin-top: 8px;
-      background: var(--main-accent);
-      border: none;
-      border-radius: 7px;
-      color: var(--main-black);
-      font-weight: bold;
-      padding: 15px 17px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background .16s;
-    }
-    .faq-linkbtn:hover {
-      background: var(--main-accent-hover);
-      color: var(--main-black);
-    }
-    /* Steps section */
-    .steps-title {
-      color: var(--main-accent);
-      margin: 42px 0 13px 0;
-      font-size: 1.12em;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .steps-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-bottom: 24px;
-    }
-    .step-card {
-      background: #111411;
-      border-radius: 12px;
-      padding: 18px 12px 16px 14px;
-      color: #fff;
-      min-height: 104px;
-      box-shadow: 0 2px 15px #1616100d;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      position: relative;
-    }
-    .step-card .step-num {
-      position: absolute;
-      left: 11px; top: 6px;
-      color: var(--main-accent);
-      font-size: 29px;
-      font-weight: bold;
-      opacity: 0.26;
-      z-index: 1;
-      font-family: monospace;
-    }
-    .step-card .step-title {
-      font-size: 16px;
-      font-weight: bold;
-      color: var(--main-accent);
-      margin-bottom: 8px;
-      z-index: 2;
-      position: relative;
-    }
-    .step-card .step-desc {
-      font-size: 0.98em;
-      color: #e2dfd1;
-      margin-bottom: 0;
-      z-index: 2;
-      position: relative;
-    }
-    /* Join box */
-    .joinbox {
-      margin: 35px 0 0 0;
-      background: #10150e;
-      border-radius: 18px;
-      padding: 42px 0 40px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 160px;
-    }
-    .joinbox .biglogo {
-      display: block;
-      width: 108px;
-      height: 108px;
-      background: var(--main-accent);
-      border-radius: 14px;
-    }
-    @media (max-width: 490px) {
-      html, body {
-        font-size: 16px;
-      }
-      .container { padding: 10px 2vw 0 2vw; }
-      .division-grid { grid-template-columns: 1fr; }
-      .steps-row { grid-template-columns: 1fr; }
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СБУ | Веб-Портал</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-black: #000000;
+            --accent-orange: #f08c00;
+            --text-white: #ffffff;
+            --card-gray: #111111;
+            --border-gray: #222222;
+        }
 
-    input[type="text"], input[type="tel"] {
-      background: #20201c;
-      color: #fff;
-      font-size: 1em;
-      border-radius: 6px;
-      border: none;
-      padding: 14px 14px;
-      margin-bottom: 10px;
-      outline: none;
-      width: 100%; 
-      box-sizing: border-box;
-    }
-    input[type="radio"], input[type="checkbox"] { accent-color: var(--main-accent); }
-    button[type="submit"] { 
-      transition: background 0.15s;
-    }
-    button[type="submit"]:hover { background: var(--main-accent-hover);}
-    a { color: var(--main-accent);}
-      
-  </style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: var(--bg-black); color: var(--text-white); scroll-behavior: smooth; overflow-x: hidden; }
+
+        .header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(0,0,0,0.95); padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        .logo { font-weight: 900; text-transform: uppercase; line-height: 1.1; font-size: 20px; text-decoration: none; color: white; }
+        .logo span { color: var(--accent-orange); }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .apply-btn-top {
+            border: 1px solid var(--accent-orange); color: var(--accent-orange);
+            padding: 8px 16px; font-weight: 700; font-size: 12px; cursor: pointer; background: none;
+            text-transform: uppercase; transition: 0.3s;
+        }
+        .apply-btn-top:hover { background: var(--accent-orange); color: black; }
+
+        .burger { cursor: pointer; display: flex; flex-direction: column; gap: 6px; width: 25px; }
+        .burger div { height: 2px; width: 100%; background: white; transition: 0.3s; }
+
+        .overlay-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-black); z-index: 2000; display: none;
+            flex-direction: column; justify-content: center; align-items: flex-start; padding: 10%;
+        }
+        .overlay-menu.active { display: flex; }
+        .overlay-menu a {
+            font-size: 45px; font-weight: 900; text-transform: uppercase;
+            color: white; text-decoration: none; margin: 10px 0; transition: 0.3s;
+        }
+        .overlay-menu a:hover { color: var(--accent-orange); transform: translateX(20px); }
+        .close-btn { position: absolute; top: 30px; right: 5%; font-size: 50px; cursor: pointer; }
+
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .word-cloud { font-weight: 700; text-transform: uppercase; opacity: 0.6; font-size: 14px; letter-spacing: 2px; }
+        .main-title { font-size: clamp(40px, 10vw, 100px); font-weight: 900; line-height: 0.9; margin: 20px 0; color: var(--accent-orange); }
+        .hero-btn {
+            background: var(--accent-orange); color: black; padding: 20px 45px;
+            font-weight: 900; text-transform: uppercase; text-decoration: none; font-size: 18px;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+            display: inline-block; margin-top: 30px;
+        }
+
+        section { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 50px; }
+        .section-header h2 { font-size: 48px; font-weight: 900; text-transform: uppercase; color: var(--accent-orange); }
+        .section-header p { max-width: 600px; color: #888; margin-top: 15px; line-height: 1.6; }
+
+        .vac-grid { display: grid; gap: 10px; }
+        .vac-card {
+            background: var(--card-gray); border: 1px solid var(--border-gray);
+            padding: 30px; display: flex; justify-content: space-between; align-items: center;
+            transition: 0.3s;
+        }
+        .vac-card:hover { border-color: var(--accent-orange); }
+        .vac-card h3 { font-size: 20px; text-transform: uppercase; margin-bottom: 10px; }
+        .vac-card p { color: #777; font-size: 14px; }
+        .details-btn { border: 1px solid var(--accent-orange); color: var(--accent-orange); padding: 10px 25px; text-decoration: none; font-weight: 700; font-size: 12px; }
+
+        .faq-container { width: 100%; }
+        .faq-item { border-bottom: 1px solid var(--border-gray); }
+        .faq-trigger {
+            padding: 30px 0; display: flex; justify-content: space-between; 
+            align-items: center; cursor: pointer; text-transform: uppercase; font-weight: 700;
+        }
+        .faq-content { max-height: 0; overflow: hidden; transition: 0.5s ease-out; color: #888; line-height: 1.8; }
+        .faq-item.active .faq-content { max-height: 300px; padding-bottom: 30px; }
+        .faq-plus { color: var(--accent-orange); font-size: 24px; }
+
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 40px; }
+        .step-box { background: var(--card-gray); padding: 30px; border: 1px solid var(--border-gray); position: relative; }
+        .step-num { font-size: 60px; font-weight: 900; color: rgba(240, 140, 0, 0.2); position: absolute; top: 10px; left: 20px; }
+        .step-box h4 { position: relative; z-index: 1; text-transform: uppercase; margin-top: 40px; margin-bottom: 15px; }
+        .step-box p { position: relative; z-index: 1; font-size: 13px; color: #aaa; }
+
+        .form-box { background: var(--card-gray); border: 1px solid var(--border-gray); padding: 50px; margin-top: 40px; }
+        .inputs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        input, select { 
+            background: #0a0a0a; border: 1px solid var(--border-gray); padding: 15px; 
+            color: white; width: 100%; outline: none; font-size: 16px;
+        }
+        input:focus { border-color: var(--accent-orange); }
+        .full-col { grid-column: span 2; }
+
+        @media (max-width: 768px) {
+            .inputs-grid { grid-template-columns: 1fr; }
+            .full-col { grid-column: span 1; }
+        }
+    </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="logo-block">
-      <div class="logo-img">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect width="32" height="32" rx="7" fill="#ff9900"/>
-          <rect x="7" y="6" width="5" height="20" rx="2.5" fill="#131313"/>
-          <rect x="15" y="6" width="5" height="20" rx="2.5" fill="#131313"/>
-          <rect x="23" y="6" width="5" height="20" rx="2.5" fill="#131313"/>
-        </svg>
-      </div>
-      <span class="logo-title">СЛУЖБА БЕЗПЕКИ УКРАЇНИ</span>
-    </div>
-    <div class="topbar-actions">
-      <button class="accent-btn">Подати заявку</button>
-      <button class="langbtn">УКР ▼</button>
-      <button class="menu-btn">☰ Меню</button>
-    </div>
-  </div>
-  <div class="container">
-    <div class="main-cloud">
-      <div class="cloud-words">
-        <span>Безпека країни</span>
-        <span>Навчені спеціалісти</span>
-        <span>Сучасне обладнання</span>
-        <span>Своя академія</span>
-        <span>Нові стандарти</span>
-        <span>Захист кожного</span>
-        <span>Післяслужбова підтримка</span>
-        <span>Готовність до викликів</span>
-      </div>
-      <span>ЗРОБЛЕНО ДЛЯ ТЕБЕ</span>
-    </div>
-    <button class="apply-btn-main">Подати заявку</button>
 
-    <div class="about-card">
-      <h2>ПРО СБУ</h2>
-      <p>Служба безпеки України — державна спеціальна служба, яка відповідальна за захист національної безпеки, суверенітету та територіальної цілісності України.</p>
-      <button class="detail-btn">Детальніше</button>
+    <div class="overlay-menu" id="menu">
+        <div class="close-btn" onclick="toggleMenu()">&times;</div>
+        <a href="#" onclick="toggleMenu()">Головна</a>
+        <a href="#about" onclick="toggleMenu()">Про СБУ</a>
+        <a href="#vacancies" onclick="toggleMenu()">Вакансії</a>
+        <a href="#faq" onclick="toggleMenu()">FAQ</a>
+        <a href="#apply" onclick="toggleMenu()">Подати заявку</a>
     </div>
 
-    <div class="video-card" tabindex="0">
-      <div class="video-logo">СБУ</div>
-      <div class="video-play">&#9654;</div>
-      <div class="video-title">МИ ТУТ, ЩОБ ЗАХИЩАТИ</div>
-      <img src="https://placehold.co/540x170?text=SBU+promo" alt="SBU promo video poster">
-    </div>
-
-    <div class="choose-title">ОБИРАЙ СВІЙ ШЛЯХ</div>
-    <div class="choose-row">
-      <div class="choose-card">
-        <strong>🛡 ХОЧУ СЛУЖИТИ</strong>
-        <div class="choose-desc">Виконуй завдання з безпеки, розкривай злочини, сприяй захисту держави та громадян. Сучасна підготовка та кар'єра.</div>
-        <button class="choose-btn">БОЙОВІ ПОСАДИ</button>
-      </div>
-      <div class="choose-card">
-        <strong>🔧 ХОЧУ ПРАЦЮВАТИ</strong>
-        <div class="choose-desc">Реалізуй сильні сторони в ІТ, юриспруденції, аналітиці, медицині чи логістиці для підтримки важливих операцій.</div>
-        <button class="choose-btn">ТИЛОВІ ПОСАДИ</button>
-      </div>
-    </div>
-    <div class="choose-row">
-      <div class="choose-card" style="flex:2;">
-        <strong>🎓 ХОЧУ НАВЧАТИСЯ</strong>
-        <div class="choose-desc">Отримай сучасну освіту та навички, стажуйся в спеціалізованих академіях безпеки для цивільних та військовослужбовців.</div>
-        <button class="choose-btn">УСІ КУРСИ</button>
-      </div>
-    </div>
-
-    <div class="find-title">ЗНАЙДИ СЕБЕ В СБУ</div>
-    <div class="find-desc">Служба безпеки України — місце, де кожен може знайти своє покликання та напрямок професійного розвитку.</div>
-    <div class="find-list">
-      <div class="find-card">
-        <div class="find-label">З ДРУГОЇ СЛУЖБИ В СБУ</div>
-        Для тих, хто хоче перейти до СБУ і шукати нові умови та можливості.
-        <button class="find-btn">Деталі</button>
-      </div>
-      <div class="find-card">
-        <div class="find-label">ТЕХНОЛОГІЧНІ ПОСАДИ</div>
-        Робота з кіберзахистом, інформаційними системами, безпілотними платформами та сучасними технологіями.
-        <button class="find-btn">Деталі</button>
-      </div>
-      <div class="find-card">
-        <div class="find-label">СПЕЦІАЛЬНІ ПІДРОЗДІЛИ</div>
-        Виконання важливих оперативних завдань у складі елітних підрозділів СБУ.
-        <button class="find-btn">Деталі</button>
-      </div>
-      <div class="find-card">
-        <div class="find-label">АНАЛІТИКА, КОМУНІКАЦІЇ</div>
-        Вакансії для аналітиків, IT, спеціалістів із зв'язку, розвідки та даних.
-        <button class="find-btn">Деталі</button>
-      </div>
-      <div class="find-card">
-        <div class="find-label">КОНТРАКТ «18–24»</div>
-        Пропозиції для молоді: прозорі умови, кар'єрний старт і навчання.
-        <button class="find-btn">Деталі</button>
-      </div>
-      <div class="find-card">
-        <div class="find-label">ДЛЯ ІНОЗЕМЦІВ</div>
-        Можливість служити та працювати для громадян інших країн в системі СБУ.
-        <button class="find-btn">Деталі</button>
-      </div>
-    </div>
-
-    <div class="division-title">ПІДРОЗДІЛИ СБУ</div>
-    <div class="division-grid">
-      <div class="division-card">
-        <img class="division-ico" src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Emblem_of_the_Security_Service_of_Ukraine.svg" alt="logo">
-        <span>АНТИТЕРОРИСТИЧНИЙ ЦЕНТР</span>
-      </div>
-      <div class="division-card">
-        <img class="division-ico" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/State_emblem_of_Ukraine.svg" alt="logo">
-        <span>ДЕПАРТАМЕНТ КІБЕРБЕЗПЕКИ</span>
-      </div>
-      <div class="division-card">
-        <img class="division-ico" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_the_Security_Service_of_Ukraine.svg" alt="logo">
-        <span>СПЕЦПІДРОЗДІЛ «АЛЬФА»</span>
-      </div>
-      <div class="division-card">
-        <img class="division-ico" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Emblem_of_the_Ukrainian_Armed_Forces.svg" alt="logo">
-        <span>ДЕПАРТАМЕНТ КОНТРРОЗВІДКИ</span>
-      </div>
-      <div class="division-card">
-        <img class="division-ico" src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Emblem_of_the_Security_Service_of_Ukraine.svg" alt="logo">
-        <span>ЦЕНТР ІНФОРМАЦІЙНОЇ БЕЗПЕКИ</span>
-      </div>
-      <div class="division-card">
-        <img class="division-ico" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/State_emblem_of_Ukraine.svg" alt="logo">
-        <span>ОПЕРАТИВНО-ТЕХНІЧНИЙ ВІДДІЛ</span>
-      </div>
-    </div>
-
-    <div class="faq-title">ЗАПИТАННЯ ТА ВІДПОВІДІ</div>
-    <button class="faq-linkbtn">Перейти до всіх питань</button>
-    <div class="faq-list">
-      <button class="faq-btn">Чи означає подача заявки автоматичне зарахування? <span class="faq-plus">+</span></button>
-      <button class="faq-btn">Чи можна з іншого підрозділу перейти в СБУ? <span class="faq-plus">+</span></button>
-      <button class="faq-btn">Які умови служби в СБУ? <span class="faq-plus">+</span></button>
-      <button class="faq-btn">Чи приймаються особи з інших країн? <span class="faq-plus">+</span></button>
-      <button class="faq-btn">Чи отримують співробітники СБУ заробітну плату? <span class="faq-plus">+</span></button>
-      <button class="faq-btn">Які вимоги до фізичної підготовки? <span class="faq-plus">+</span></button>
-    </div>
-
-    <div class="steps-title">ЕТАПИ ВСТУПУ</div>
-    <button class="apply-btn-main">Подати заявку</button>
-    <div class="steps-row">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <div class="step-title">ЗНАЙОМСТВО</div>
-        <div class="step-desc">Вступний тиждень, ознайомчі заняття, знайомство з підрозділами та принципами роботи.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <div class="step-title">ЗАЯВКА</div>
-        <div class="step-desc">Подай заявку на сайті, отримай консультацію і всю необхідну інформацію від координаторів.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <div class="step-title">ПЕРЕВІРКА</div>
-        <div class="step-desc">Перевірка навичок, стану здоров'я і відповідності вимогам конкретної посади.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">04</div>
-        <div class="step-title">ПІДГОТОВКА</div>
-        <div class="step-desc">Навчання в спеціалізованих школах і закладах СБУ, освоєння новітніх стандартів безпеки.</div>
-      </div>
-    </div>
-
-    <div class="joinbox">
-      <img class="biglogo" src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Emblem_of_the_Security_Service_of_Ukraine.svg" alt="SBU big logo">
-    </div>
-
-    <div class="join-title" style="color:var(--main-accent);font-weight:bold;margin:38px 0 16px 0;font-size:1.16em;letter-spacing:1px;">
-      ПРИЄДНУЙСЯ
-    </div>
-    <div class="join-form-card" style="background:#0f120e;border-radius:18px;padding:34px 16px 28px 16px;max-width:650px;margin:0 auto 42px auto;">
-      <img style="display:block;margin:0 auto 18px auto;width:120px;" src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Emblem_of_the_Security_Service_of_Ukraine.svg" alt="SBU Лого">
-      <form>
-        <label for="surname" style="display:block;font-size:1em;margin-bottom:6px;">Прізвище*</label>
-        <input id="surname" type="text" placeholder="Прізвище" style="width:100%;background:#222;border:none;color:#fff;padding:12px 12px;border-radius:6px;margin-bottom:18px;">
-        <label for="name" style="display:block;font-size:1em;margin-bottom:6px;">Ім'я*</label>
-        <input id="name" type="text" placeholder="Ім'я" style="width:100%;background:#222;border:none;color:#fff;padding:12px 12px;border-radius:6px;margin-bottom:18px;">
-        <label for="patronymic" style="display:block;font-size:1em;margin-bottom:6px;">По батькові</label>
-        <input id="patronymic" type="text" placeholder="По батькові" style="width:100%;background:#222;border:none;color:#fff;padding:12px 12px;border-radius:6px;margin-bottom:18px;">
-        <label for="phone" style="display:block;font-size:1em;margin-bottom:6px;">Номер телефону*</label>
-        <input id="phone" type="tel" placeholder="+38 (___) ___-__-__" style="width:100%;background:#222;border:none;color:#fff;padding:12px 12px;border-radius:6px;margin-bottom:18px;">
-        <label for="telegram" style="display:block;font-size:1em;margin-bottom:6px;">Нік в Telegram</label>
-        <input id="telegram" type="text" placeholder="Нік в Telegram" style="width:100%;background:#222;border:none;color:#fff;padding:12px 12px;border-radius:6px;margin-bottom:18px;">
-        <div style="margin-bottom:15px;">
-          <div style="margin-bottom:7px;font-size:1em;">Чи є військовослужбовцем на даний момент?</div>
-          <label style="margin-right:16px;">
-            <input type="radio" name="army" checked> Так
-          </label>
-          <label>
-            <input type="radio" name="army"> Ні
-          </label>
+    <header class="header">
+        <a href="#" class="logo"><span>///</span> СЛУЖБА БЕЗПЕКИ<br>УКРАЇНИ</a>
+        <div class="nav-right">
+            <button class="apply-btn-top" onclick="location.href='#apply'">Подати заявку</button>
+            <div class="burger" onclick="toggleMenu()">
+                <div></div><div></div><div></div>
+            </div>
         </div>
-        <div style="margin-bottom:16px;">
-          <label style="font-size: 0.96em;">
-            <input type="checkbox" checked style="accent-color:var(--main-accent);">
-            Я погоджуюсь з <a href="#" style="color:var(--main-accent);text-decoration:underline;">Політикою конфіденційності</a> та підтверджую, що мені більше 18 років.
-          </label>
-        </div>
-        <button type="submit" style="width:100%;background:var(--main-accent);color:var(--main-black);font-size:1.09em;font-weight:bold;border:none;border-radius:8px;padding:18px 0;cursor:pointer;">ПОДАТИ ЗАЯВКУ</button>
-      </form>
-    </div>
+    </header>
 
-    <footer style="background:#0c0d0b;padding:30px 0 18px 0;margin-top:40px;">
-      <div class="footer-wrap" style="max-width:650px;margin:0 auto;">
-        <div style="display: flex; align-items: center;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Emblem_of_the_Security_Service_of_Ukraine.svg" style="height:34px;margin-right:10px;" alt="Лого СБУ">
-          <span style="color:var(--main-accent);font-size:20px;font-weight:bold;">СЛУЖБА БЕЗПЕКИ УКРАЇНИ</span>
-        </div>
-        <div style="margin:14px 0;">
-          <a href="#" style="color:#fff;margin-right:10px;"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="24" style="vertical-align:middle" alt="Facebook"></a>
-          <a href="#" style="color:#fff;margin-right:10px;"><img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Instagram_logo_2022.svg" width="24" style="vertical-align:middle" alt="Instagram"></a>
-          <a href="#" style="color:#fff;margin-right:10px;"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="24" style="vertical-align:middle" alt="Telegram"></a>
-          <a href="#" style="color:#fff;"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Tiktok_logo.svg" width="24" style="vertical-align:middle" alt="TikTok"></a>
-        </div>
-        <div style="display: flex;flex-wrap:wrap;justify-content: space-between;margin:18px 0 0 0;">
-          <div style="min-width:160px;">
-            <div style="color:#fff;font-weight:bold;margin-bottom:12px;">ГОЛОВНА</div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Про СБУ</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Вакансії</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">FAQ</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Для іноземців</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Навчання</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Патронатна служба</a></div>
-          </div>
-          <div style="min-width:160px;">
-            <div style="color:#fff;font-weight:bold;margin-bottom:12px;">ІНФОРМАЦІЯ</div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Благодійний фонд</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Тест-драйв технічна розвідка</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Тестовий тиждень розвідка</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Тестовий тиждень артилерія</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Контакти</a></div>
-            <div style="color:#fff"><a href="#" style="color:inherit;text-decoration:none;">Блог</a></div>
-          </div>
-        </div>
-        <div style="color:#636363;margin-top:25px;font-size:13px;">
-          sbu.gov.ua © 2026 <br>
-          Cookie policy &nbsp; | &nbsp; Політика конфіденційності
-        </div>
-      </div>
-    </footer>
+    <section class="hero">
+        <div class="word-cloud">КОНТРРОЗВІДКА • ЦЕНТР А • КІБЕРФАХІВЦІ • АНАЛІТИКИ</div>
+        <h1 class="main-title">ЗРОБЛЕНО<br>ДЛЯ ТЕБЕ</h1>
+        <p>Приєднуйся до еліти. Захищай державну безпеку України в Херсонському регіоні.</p>
+        <a href="#apply" class="hero-btn">Подати заявку ↗</a>
+    </section>
 
-  </div>
+    <section id="vacancies">
+        <div class="section-header">
+            <h2>Знайди себе в СБУ</h2>
+            <p>Тут ти можеш розкритися як професіонал та працювати за фахом у лавах спецслужби.</p>
+        </div>
+        <div class="vac-grid">
+            <div class="vac-card">
+                <div>
+                    <h3>Центр «А» (Альфа)</h3>
+                    <p>Силові операції, боротьба з тероризмом та затримання небезпечних злочинців.</p>
+                </div>
+                <a href="#" class="details-btn">ДЕТАЛІ</a>
+            </div>
+            <div class="vac-card">
+                <div>
+                    <h3>Департамент Контррозвідки</h3>
+                    <p>Пошук ворожих шпигунів, запобігання диверсіям та зраді.</p>
+                </div>
+                <a href="#" class="details-btn">ДЕТАЛІ</a>
+            </div>
+            <div class="vac-card">
+                <div>
+                    <h3>Кіберфахівці</h3>
+                    <p>Захист цифрових кордонів, боротьба з ІПСО та хакерськими атаками ворога.</p>
+                </div>
+                <a href="#" class="details-btn">ДЕТАЛІ</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="steps">
+        <div class="section-header">
+            <h2>Етапи вступу</h2>
+        </div>
+        <div class="steps-grid">
+            <div class="step-box">
+                <span class="step-num">01</span>
+                <h4>Заявка</h4>
+                <p>Заповни анкету на сайті. Ми розглянемо її та зв'яжемося з тобою.</p>
+            </div>
+            <div class="step-box">
+                <span class="step-num">02</span>
+                <h4>Перевірка</h4>
+                <p>Проходження спецперевірки та психологічного тестування (Детектор брехні).</p>
+            </div>
+            <div class="step-box">
+                <span class="step-num">03</span>
+                <h4>Фізо</h4>
+                <p>Здача нормативів з фізичної підготовки для бойових підрозділів.</p>
+            </div>
+            <div class="step-box">
+                <span class="step-num">04</span>
+                <h4>Навчання</h4>
+                <p>Інтенсивний курс підготовки в Академії СБУ або навчальному центрі.</p>
+            </div>
+            <div class="step-box">
+                <span class="step-num">05</span>
+                <h4>Служба</h4>
+                <p>Призначення на посаду та початок виконання завдань.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-header">
+            <h2>Запитання та відповіді</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-trigger" onclick="toggleFaq(this)">Чи обов'язкова вища освіта? <span class="faq-plus">+</span></div>
+                <div class="faq-content">Для офіцерських посад вища освіта обов'язкова. Для сержантського складу достатньо середньої спеціальної освіти.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-trigger" onclick="toggleFaq(this)">Чи можна служити дівчатам? <span class="faq-plus">+</span></div>
+                <div class="faq-content">Так, СБУ відкрита для жінок на рівних правах. У нас є фахівчині в аналітиці, зв'язку, медицині та слідстві.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-trigger" onclick="toggleFaq(this)">Яке грошове забезпечення? <span class="faq-plus">+</span></div>
+                <div class="faq-content">Грошове забезпечення конкурентне та залежить від посади, звання та виконання бойових завдань.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФОРМА -->
+    <section id="apply">
+        <h2 class="section-header" style="color:white; font-size: 60px;">ПРИЄДНУЙСЯ</h2>
+        <div class="form-box">
+            <form id="sbuForm">
+                <div class="inputs-grid">
+                    <input type="text" placeholder="Прізвище*" required>
+                    <input type="text" placeholder="Ім'я*" required>
+                    <input type="text" placeholder="Номер телефону*" required>
+                    <input type="text" placeholder="Нік у Telegram">
+                    <div class="full-col">
+                        <select required>
+                            <option value="" disabled selected>Оберіть напрямок служби</option>
+                            <option>Спецпідрозділ Альфа</option>
+                            <option>Контррозвідка</option>
+                            <option>Кібербезпека</option>
+                            <option>Слідство</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="hero-btn full-col" style="width:100%; border:none; cursor:pointer;">Надіслати анкету ↗</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const plus = element.querySelector('.faq-plus');
+            
+            document.querySelectorAll('.faq-item').forEach(el => {
+                if(el !== item) el.classList.remove('active');
+            });
+
+            item.classList.toggle('active');
+            plus.textContent = item.classList.contains('active') ? '−' : '+';
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
